@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CulturalEventsApp.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="events.png"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="paint" />
+
+            <Label
+                Text="Salutare!"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                Text="Bine ați venit la aplicația noastră de evenimente culturale!"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Bine ați venit la aplicația noastră de evenimente culturale!" />
+
+            <Label
+                Text="Evenimente care inspiră, cultură care transformă."
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level3"
+                SemanticProperties.Description="Evenimente care inspiră, cultură care transformă." />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
