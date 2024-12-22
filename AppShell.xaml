@@ -9,13 +9,17 @@
 
     <TabBar>
         <ShellContent
-            Title="Evenimente Culturale"
+            Title="Bine ați venit!"
             ContentTemplate="{DataTemplate local:MainPage}"
             />
         <ShellContent
             Title="Despre"
             ContentTemplate="{DataTemplate local:AboutPage}"
             />
+        <ShellContent
+         Title="Lista mea de evenimente"
+         ContentTemplate="{DataTemplate local:ListEntryPage}"
+         /> 
     </TabBar>
 
 </Shell>
