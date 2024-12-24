@@ -68,11 +68,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="EventDetailPage.xaml.cs">
-	    <DependentUpon>EventDetailPage.xaml</DependentUpon>
+	  <Compile Update="ListPage.xaml.cs">
+	    <DependentUpon>ListPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="EventPage.xaml.cs">
-	    <DependentUpon>EventPage.xaml</DependentUpon>
+	  <Compile Update="ListEntryPage.xaml.cs">
+	    <DependentUpon>ListEntryPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -80,10 +80,10 @@
 	  <MauiXaml Update="AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="EventPage.xaml">
+	  <MauiXaml Update="ListEntryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="EventDetailPage.xaml">
+	  <MauiXaml Update="ListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

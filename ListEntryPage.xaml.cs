@@ -4,15 +4,17 @@ namespace CulturalEventsApp;
 
 public partial class ListEntryPage : ContentPage
 {
-	public ListEntryPage()
-	{
-		InitializeComponent();
-	}
+    public ListEntryPage()
+    {
+        InitializeComponent();
+    }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
         listView.ItemsSource = await App.Database.GetEventListAsync();
     }
+
     async void OnEventAddedClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new ListPage
@@ -20,6 +22,7 @@ public partial class ListEntryPage : ContentPage
             BindingContext = new EventList()
         });
     }
+
     async void OnEventViewItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         if (e.SelectedItem != null)

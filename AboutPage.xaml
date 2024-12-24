@@ -14,7 +14,7 @@
             SemanticProperties.Description="culture" />
 
             <Label
-            Text="  Proiectul nostru își propune să aducă în prim-plan o varietate de evenimente culturale destinate tuturor celor pasionați de artă, muzică, dans și alte cele. Prin intermediul acestei aplicații, participanții vor putea să descopere evenimente pe placul lor și cele mai apropiate de ei. Scopul nostru este de a crea o platformă accesibilă și interactivă, care să faciliteze legătura între organizatori și public, promovând cultura și învățătura continuă într-un mod plăcut și accesibil tuturor."
+            Text="Proiectul nostru își propune să aducă în prim-plan o varietate de evenimente culturale destinate tuturor celor pasionați de artă, muzică, dans și alte cele. Prin intermediul acestei aplicații, participanții vor putea să descopere evenimente pe placul lor și cele mai apropiate de ei. Scopul nostru este de a crea o platformă accesibilă și interactivă, care să faciliteze legătura între organizatori și public, promovând cultura și învățătura continuă într-un mod plăcut și accesibil tuturor."
             Style="{StaticResource SubHeadline}"
             SemanticProperties.HeadingLevel="Level3"
             SemanticProperties.Description="Evenimente care inspiră, cultură care transformă." />

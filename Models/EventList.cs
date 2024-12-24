@@ -17,5 +17,9 @@ namespace CulturalEventsApp.Models
 
         public string Description { get; set; }
         public DateTime Date { get; set; }
+
+        [MaxLength(250), Unique]
+        public string Title { get; set; }
+
     }
 }
