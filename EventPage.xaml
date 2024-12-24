@@ -4,7 +4,7 @@
              x:Class="CulturalEventsApp.ListEntryPage"
              Title="Lista mea de evenimente">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Adaugă"
+        <ToolbarItem Text="Adaugă eveniment"
  Clicked="OnEventAddedClicked" />
     </ContentPage.ToolbarItems>
     <ListView x:Name="listView"

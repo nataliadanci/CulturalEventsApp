@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CulturalEventsApp.ListPage"
-             Title="ListPage">
+             Title="Detalii eveniment">
     <StackLayout Margin="20">
-        <Editor Placeholder="Enter the description of the event"
+        <Editor Placeholder="Introduceți descrierea evenimentului"
  Text="{Binding Description}"
  HeightRequest="100" />
         <Grid>
