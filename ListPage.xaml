@@ -20,6 +20,12 @@
             Format="dd/MM/yyyy"
             MinimumDate="{x:Static System:DateTime.Now}" />
 
+        <!-- Selector de locație -->
+        <Picker x:Name="VenuePicker" 
+                Title="Introduceți numele locației" 
+                ItemsSource="{Binding VenueName}" 
+                ItemDisplayBinding="{Binding VenueDetails}"
+                SelectedIndexChanged="OnVenueSelected" />
 
         <!-- Butoane Salvare și Anulare -->
         <Grid Margin="10,20,10,0">
