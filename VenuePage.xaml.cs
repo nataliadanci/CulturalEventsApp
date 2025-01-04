@@ -25,6 +25,11 @@ namespace CulturalEventsApp
             }
         }
 
+        async void OnCancelButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+
         // Deschide locația pe hartă și trimite notificare
         async void OnShowMapButtonClicked(object sender, EventArgs e)
         {

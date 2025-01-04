@@ -4,52 +4,70 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              x:Class="CulturalEventsApp.ListPage"
              Title="Detalii eveniment">
-    <StackLayout Margin="20">
-        <!-- Introducere titlu eveniment -->
-        <Editor Placeholder="Introduceți titlul evenimentului"
-                Text="{Binding Title}"
-                HeightRequest="50" />
+    <ScrollView>
+        <Frame CornerRadius="10" BorderColor="Black" Margin="0,10" BackgroundColor="DarkGray" WidthRequest="400">
+            <StackLayout Margin="20" Spacing="15" VerticalOptions="Center" HorizontalOptions="Center">
+                <Label Text="Eveniment: " FontSize="18" TextColor="Black" />
+                <!-- Introducere titlu eveniment -->
+                <Editor Placeholder="Introduceți titlul evenimentului"
+                        Text="{Binding Title}"
+                        HeightRequest="50"
+                        WidthRequest="300"
+                        TextColor="Black"/>
 
-        <!-- Introducere descriere eveniment -->
-        <Editor Placeholder="Introduceți descrierea evenimentului"
-                Text="{Binding Description}"
-                HeightRequest="100" />
+                <!-- Introducere descriere eveniment -->
+                <Editor Placeholder="Introduceți descrierea evenimentului"
+                        Text="{Binding Description}"
+                        HeightRequest="100"
+                        WidthRequest="300"
+                        TextColor="Black"/>
 
-        <!-- Selector de dată pentru eveniment -->
-        <DatePicker Date="{Binding Date}" 
-                    Format="dd/MM/yyyy"
-                    MinimumDate="{x:Static System:DateTime.Now}" />
+                <!-- Selector de dată pentru eveniment -->
+                <DatePicker Date="{Binding Date}" 
+                            Format="dd/MM/yyyy"
+                            MinimumDate="{x:Static System:DateTime.Now}"
+                            WidthRequest="300"
+                            TextColor="Black"/>
 
-        <!-- Selector de locație -->
-        <Picker x:Name="VenuePicker"
-                Title="Select Venue"
-                ItemDisplayBinding="{Binding VenueName}"
-                SelectedIndexChanged="OnVenueSelected" />
+                <!-- Selector de locație -->
+                <Picker x:Name="VenuePicker"
+						Title="Selectează locația"
+						ItemDisplayBinding="{Binding VenueName}"
+						SelectedIndexChanged="OnVenueSelected" 
+                        WidthRequest="300"
+						TitleColor="Black"/>
 
-        <!-- Câmpul de bifat pentru favorite -->
-        <CheckBox IsChecked="{Binding IsFavorite}"
-                  Color="GreenYellow"
-                  HorizontalOptions="Start"
-                  VerticalOptions="Center"
-                  Margin="10"
-                  x:Name="FavoriteCheckBox"/>
-        <Label Text="Adaugă la favorite" VerticalOptions="Center" />
+                <!-- Câmpul de bifat pentru favorite -->
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <CheckBox IsChecked="{Binding IsFavorite}"
+                          Color="Purple"
+                          HorizontalOptions="Start"
+                          VerticalOptions="Center"
+                          Margin="5" />
+                    <Label Text="Adaugă la favorite" TextColor="Black" VerticalOptions="Center"  />
+                </StackLayout>
 
-        <!-- Butoane Salvare și Anulare -->
-        <Grid Margin="10,20,10,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Button Text="Salvează"
-                    Clicked="OnSaveButtonClicked" />
-            <Button Grid.Column="1"
-                    Text="Anulează"
-                    Clicked="OnCancelButtonClicked" />
-        </Grid>
-
-
-    </StackLayout>
-
+                <!-- Butoane Salvare și Anulare -->
+                <Grid Margin="0,20,0,0" WidthRequest="300">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Salvează"
+                            Clicked="OnSaveButtonClicked"
+                            BackgroundColor="Purple"
+                            TextColor="White"
+                            CornerRadius="10"
+                            Margin="5" />
+                    <Button Grid.Column="1"
+                            Text="Anulează"
+                            Clicked="OnCancelButtonClicked"
+                            BackgroundColor="#CCCCCC"
+                            TextColor="Purple"
+                            CornerRadius="10"
+                            Margin="5" />
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </ScrollView>
 </ContentPage>

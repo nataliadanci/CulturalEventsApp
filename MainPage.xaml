@@ -8,10 +8,10 @@
             Padding="30,0"
             Spacing="25">
             <Image
-                Source="events.png"
+                Source="events3.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
-                SemanticProperties.Description="paint" />
+                SemanticProperties.Description="paint"/>
 
             <Label
                 Text="Salutare!"

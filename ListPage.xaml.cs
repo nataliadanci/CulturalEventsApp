@@ -91,5 +91,6 @@ namespace CulturalEventsApp
             await Navigation.PopAsync();
         }
 
+
     }
 }

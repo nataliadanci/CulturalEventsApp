@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CulturalEventsApp.FavouriteEventsPage"
-             Title="FavouriteEventsPage">
+             Title="Evenimentele mele favorite">
     <ContentPage.Content>
         <StackLayout Margin="20">
             <ListView x:Name="FavoriteEventsListView"
@@ -10,8 +10,35 @@
           ItemSelected="OnFavoriteEventSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Title}"
-                      Detail="{Binding Description}" />
+                        <ViewCell>
+                            <Frame CornerRadius="10" BorderColor="Black" Margin="0,10" BackgroundColor="Gray" WidthRequest="300">
+                                <StackLayout Orientation="Vertical" Padding="15">
+                                    <!-- Titlul evenimentului -->
+                                    <Label Text="{Binding Title}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="LightPink"
+                                           Padding="10"/>
+
+                                    <!-- Descrierea evenimentului -->
+                                    <Label Text="{Binding Description}"
+                                           FontSize="14"
+                                           TextColor="Black"
+                                           Padding="10"/>
+                                    <!-- Adresa -->
+                                    <Label Text="{Binding VenueName}"
+                                           FontSize="14"
+                                           TextColor="Black"
+                                           Padding="10"/>
+                                    <!-- Data -->
+                                    <Label Text="{Binding Date, StringFormat='Data: {0:dd/MM/yyyy}'}"
+                                           FontSize="14"
+                                           FontAttributes="Italic"
+                                           TextColor="Black"
+                                           Padding="10"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

@@ -18,11 +18,11 @@
         />
 
         <ShellContent
-            Title="Lista mea de evenimente"
+            Title="Lista de evenimente"
             ContentTemplate="{DataTemplate local:ListEntryPage}"
         />
         <ShellContent
-            Title="Locațiile mele"
+            Title="Locații"
             ContentTemplate="{DataTemplate local:VenueEntryPage}"
         />
         <ShellContent
