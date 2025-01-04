@@ -87,29 +87,55 @@ namespace CulturalEventsApp.Data
             {
                 if (venue.ID != 0)
                 {
+                    // Verifică dacă locația există deja
                     var existingVenue = await _database.Table<Venue>()
                                                         .Where(v => v.ID == venue.ID)
                                                         .FirstOrDefaultAsync();
                     if (existingVenue != null)
                     {
+                        // Actualizează locația
                         return await _database.UpdateAsync(venue);
                     }
                     else
                     {
+                        // Adaugă o locație nouă
                         return await _database.InsertAsync(venue);
                     }
                 }
                 else
                 {
+                    // Adaugă locația nouă
                     return await _database.InsertAsync(venue);
                 }
             }
             catch (Exception ex)
             {
-                // Gestionare erori
                 Console.WriteLine($"Eroare la salvarea locației: {ex.Message}");
                 throw;
             }
+        }
+        public async Task SaveFavoriteEventAsync(EventList eventItem)
+        {
+            var existingFavorite = await _database.Table<EventList>().FirstOrDefaultAsync(e => e.ID == eventItem.ID && e.IsFavorite);
+            if (existingFavorite == null)
+            {
+                eventItem.IsFavorite = true; // Marks the event as favorite
+                await _database.UpdateAsync(eventItem);  // Updates the event in the database
+            }
+        }
+        public Task<List<EventList>> GetFavoriteEventsAsync()
+        {
+            // Fetch all events that are marked as favorites
+            return _database.Table<EventList>().Where(e => e.IsFavorite).ToListAsync();
+        }
+
+        public async Task DeleteEventAsync(EventList eventItem)
+        {
+            await _database.DeleteAsync(eventItem);  // Deletes the event from the database
+        }
+        public async Task DeleteVenueAsync(Venue venue)
+        {
+            await _database.DeleteAsync(venue);  // Deletes the venue from the database
         }
     }
 }

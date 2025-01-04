@@ -44,7 +44,7 @@ namespace CulturalEventsApp
             {
                 var request = new NotificationRequest
                 {
-                    Title = "Ai un eveniment în apropiere!",
+                    Title = "Aproape ai ajuns! Nu uita să te distrezi",
                     Description = address,
                     Schedule = new NotificationRequestSchedule
                     {

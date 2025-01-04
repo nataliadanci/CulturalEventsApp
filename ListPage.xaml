@@ -17,8 +17,8 @@
 
         <!-- Selector de dată pentru eveniment -->
         <DatePicker Date="{Binding Date}" 
-            Format="dd/MM/yyyy"
-            MinimumDate="{x:Static System:DateTime.Now}" />
+                    Format="dd/MM/yyyy"
+                    MinimumDate="{x:Static System:DateTime.Now}" />
 
         <!-- Selector de locație -->
         <Picker x:Name="VenuePicker" 
@@ -26,6 +26,15 @@
                 ItemsSource="{Binding VenueName}" 
                 ItemDisplayBinding="{Binding VenueDetails}"
                 SelectedIndexChanged="OnVenueSelected" />
+
+        <!-- Câmpul de bifat pentru favorite -->
+        <CheckBox IsChecked="{Binding IsFavorite}"
+                  Color="GreenYellow"
+                  HorizontalOptions="Start"
+                  VerticalOptions="Center"
+                  Margin="10"
+                  x:Name="FavoriteCheckBox"/>
+        <Label Text="Adaugă la favorite" VerticalOptions="Center" />
 
         <!-- Butoane Salvare și Anulare -->
         <Grid Margin="10,20,10,0">
@@ -43,5 +52,27 @@
                     Text="Șterge"
                     Clicked="OnDeleteButtonClicked" />
         </Grid>
+
+        <!-- Buton Ștergere (Vizibil doar la hover) -->
+        <Button Text="🗑️"
+                Grid.Column="1"
+                Command="{Binding DeleteCommand}"
+                CommandParameter="{Binding}"
+                BackgroundColor="Transparent"
+                TextColor="Red"
+                IsVisible="False" />
+
     </StackLayout>
+
+    <!-- Vizibilitate la hover -->
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+            <VisualState x:Name="PointerOver">
+                <VisualState.Setters>
+                    <Setter Property="IsVisible" Value="True" />
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+
 </ContentPage>

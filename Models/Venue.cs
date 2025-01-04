@@ -26,5 +26,6 @@ namespace CulturalEventsApp.Models
 
         [OneToMany]
         public List<EventList> EventLists { get; set; }
+
     }
 }

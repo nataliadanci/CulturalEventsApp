@@ -25,7 +25,11 @@
             Title="Locațiile mele"
             ContentTemplate="{DataTemplate local:VenueEntryPage}"
         />
-       
+        <ShellContent
+            Title="Evenimentele mele favorite"
+            ContentTemplate="{DataTemplate local:FavouriteEventsPage}"
+/>
+
     </TabBar>
 
 </Shell>

@@ -33,4 +33,5 @@ public partial class ListEntryPage : ContentPage
             });
         }
     }
+
 }
