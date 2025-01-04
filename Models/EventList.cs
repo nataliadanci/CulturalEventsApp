@@ -25,12 +25,15 @@ namespace CulturalEventsApp.Models
 
         [ForeignKey(typeof(Venue))]
         public int VenueId { get; set; }
+        [ManyToOne]
+        public Venue Venue { get; set; }
 
         public bool IsFavorite { get; set; }
         public override string ToString()
         {
             return Title;
         }
+        public string VenueName { get; set; }
 
         [Ignore]
         public ICommand DeleteCommand { get; set; }

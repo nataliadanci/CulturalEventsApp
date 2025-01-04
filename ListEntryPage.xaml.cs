@@ -1,4 +1,4 @@
-using CulturalEventsApp.Models;
+﻿using CulturalEventsApp.Models;
 
 namespace CulturalEventsApp;
 
@@ -27,10 +27,43 @@ public partial class ListEntryPage : ContentPage
     {
         if (e.SelectedItem != null)
         {
-            await Navigation.PushAsync(new ListPage
+            var selectedEvent = e.SelectedItem as EventList;
+
+            var action = await DisplayActionSheet("Opțiuni", "Anulează", null, "Editează", "Șterge");
+
+            switch (action)
             {
-                BindingContext = e.SelectedItem as EventList
-            });
+                case "Editează":
+                    await Navigation.PushAsync(new ListPage
+                    {
+                        BindingContext = selectedEvent
+                    });
+                    break;
+
+                case "Șterge":
+                    bool confirmDelete = await DisplayAlert("Confirmare", "Sigur vrei să ștergi acest eveniment?", "Da", "Nu");
+                    if (confirmDelete)
+                    {
+                        await App.Database.DeleteEventAsync(selectedEvent); // Șterge evenimentul din baza de date
+                        await RefreshEventListAsync(); // Reîncarcă lista de evenimente
+                        await DisplayAlert("Succes", "Evenimentul a fost șters cu succes!", "OK");
+                    }
+                    break;
+            }
+
+            listView.SelectedItem = null; // Deselectez elementul
+        }
+    }
+
+    private async Task RefreshEventListAsync()
+    {
+        try
+        {
+            listView.ItemsSource = await App.Database.GetEventListAsync();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Eroare", $"A apărut o eroare la reîncărcarea listei: {ex.Message}", "OK");
         }
     }
 

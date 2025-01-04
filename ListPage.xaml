@@ -21,10 +21,9 @@
                     MinimumDate="{x:Static System:DateTime.Now}" />
 
         <!-- Selector de locație -->
-        <Picker x:Name="VenuePicker" 
-                Title="Introduceți numele locației" 
-                ItemsSource="{Binding VenueName}" 
-                ItemDisplayBinding="{Binding VenueDetails}"
+        <Picker x:Name="VenuePicker"
+                Title="Select Venue"
+                ItemDisplayBinding="{Binding VenueName}"
                 SelectedIndexChanged="OnVenueSelected" />
 
         <!-- Câmpul de bifat pentru favorite -->
@@ -48,31 +47,9 @@
             <Button Grid.Column="1"
                     Text="Anulează"
                     Clicked="OnCancelButtonClicked" />
-            <Button Grid.Column="2"
-                    Text="Șterge"
-                    Clicked="OnDeleteButtonClicked" />
         </Grid>
 
-        <!-- Buton Ștergere (Vizibil doar la hover) -->
-        <Button Text="🗑️"
-                Grid.Column="1"
-                Command="{Binding DeleteCommand}"
-                CommandParameter="{Binding}"
-                BackgroundColor="Transparent"
-                TextColor="Red"
-                IsVisible="False" />
 
     </StackLayout>
-
-    <!-- Vizibilitate la hover -->
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup x:Name="CommonStates">
-            <VisualState x:Name="PointerOver">
-                <VisualState.Setters>
-                    <Setter Property="IsVisible" Value="True" />
-                </VisualState.Setters>
-            </VisualState>
-        </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups>
 
 </ContentPage>

@@ -24,7 +24,7 @@ namespace CulturalEventsApp.Models
             }
         }
 
-        [OneToMany]
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<EventList> EventLists { get; set; }
 
     }

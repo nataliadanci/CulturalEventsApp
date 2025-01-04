@@ -31,39 +31,29 @@ namespace CulturalEventsApp
                 return;
             }
 
-            // Picker locație
+            // Asigură-te că locația este selectată
             var selectedVenue = VenuePicker.SelectedItem as Venue;
             if (selectedVenue != null)
             {
-                ev.VenueId = selectedVenue.ID;
-                try
-                {
-                    await App.Database.SaveEventListAsync(ev);
-                    await Navigation.PopAsync();
-                }
-                catch (Exception ex)
-                {
-                    await DisplayAlert("Eroare", $"A apărut o eroare la salvarea evenimentului: {ex.Message}", "OK");
-                }
+                ev.VenueId = selectedVenue.ID; // Setează VenueId
+                ev.VenueName = selectedVenue.VenueName; // Opțional, pentru afisare rapidă
             }
             else
             {
                 await DisplayAlert("Eroare", "Vă rugăm să selectați o locație.", "OK");
+                return;
+            }
+
+            try
+            {
+                await App.Database.SaveEventListAsync(ev);
+                await Navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Eroare", $"A apărut o eroare la salvarea evenimentului: {ex.Message}", "OK");
             }
         }
-
-        async void OnCancelButtonClicked(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
-        }
-
-        async void OnDeleteButtonClicked(object sender, EventArgs e)
-        {
-            var slist = (EventList)BindingContext;
-            await App.Database.DeleteEventListAsync(slist);
-            await Navigation.PopAsync();
-        }
-
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -73,20 +63,33 @@ namespace CulturalEventsApp
                 var venues = await App.Database.GetVenuesAsync();
                 VenueList = venues.ToList();
                 VenuePicker.ItemsSource = VenueList;
+
+                // Selectează locația existentă dacă editezi un eveniment
+                var ev = (EventList)BindingContext;
+                if (ev != null && ev.VenueId != 0)
+                {
+                    VenuePicker.SelectedItem = VenueList.FirstOrDefault(v => v.ID == ev.VenueId);
+                }
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Eroare", $"A apărut o eroare la încărcarea locațiilor: {ex.Message}", "OK");
             }
         }
-
         private void OnVenueSelected(object sender, EventArgs e)
         {
-            var selectedVenue = VenuePicker.SelectedItem as Venue;
+            var picker = sender as Picker;
+            var selectedVenue = picker.SelectedItem as Venue;
+
             if (selectedVenue != null)
             {
                 Console.WriteLine($"Locația selectată: {selectedVenue.VenueName}");
             }
         }
+        async void OnCancelButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+
     }
 }

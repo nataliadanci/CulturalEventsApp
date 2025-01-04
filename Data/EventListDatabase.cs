@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using SQLiteNetExtensionsAsync.Extensions; // Necesită pentru metodele async
 using SQLiteNetExtensions.Attributes;
 using CulturalEventsApp.Models;
 
@@ -19,11 +20,49 @@ namespace CulturalEventsApp.Data
             _database.CreateTableAsync<EventList>().Wait();
             _database.CreateTableAsync<Venue>().Wait();
         }
-
-        // Obține lista de evenimente
-        public Task<List<EventList>> GetEventListAsync()
+        // Obține toate locațiile
+        public async Task<List<Venue>> GetVenuesAsync()
         {
-            return _database.Table<EventList>().ToListAsync();
+            var venues = await _database.Table<Venue>().ToListAsync();
+            foreach (var venue in venues)
+            {
+                await _database.GetChildrenAsync(venue, true);
+            }
+            return venues;
+        }
+
+        // Obține locație după ID
+        public Task<Venue> GetVenueAsync(int venueId)
+        {
+            return _database.GetWithChildrenAsync<Venue>(venueId);
+        }
+
+        
+        // Obține lista completă de evenimente cu detalii despre locatii
+        public async Task<List<EventList>> GetEventListAsync()
+        {
+            var events = await _database.Table<EventList>().ToListAsync();
+            foreach (var evt in events)
+            {
+                await _database.GetChildrenAsync(evt, true); // Adaugă detalii despre locație
+            }
+            return events;
+        }
+
+
+        // Obține evenimente asociate unei locații
+        public async Task<List<EventList>> GetEventsByVenueIdAsync(int venueId)
+        {
+            var events = await _database.Table<EventList>()
+                                        .Where(e => e.VenueId == venueId)
+                                        .ToListAsync();
+
+            foreach (var evt in events)
+            {
+                await _database.GetChildrenAsync(evt, true);
+            }
+
+            return events;
         }
 
         // Obține un eveniment specificat după ID
@@ -72,12 +111,6 @@ namespace CulturalEventsApp.Data
         public Task<int> DeleteEventListAsync(EventList slist)
         {
             return _database.DeleteAsync(slist);
-        }
-
-        // Obține lista de locații
-        public Task<List<Venue>> GetVenuesAsync()
-        {
-            return _database.Table<Venue>().ToListAsync();
         }
 
         // Salvează sau actualizează o locație
