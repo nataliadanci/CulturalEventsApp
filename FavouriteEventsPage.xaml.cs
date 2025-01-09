@@ -46,13 +46,13 @@ namespace CulturalEventsApp
                 {
 
                     case "Șterge din favorite":
-                        bool confirmDelete = await DisplayAlert("Confirmare", "Sigur vrei să elimini această locație din favorite?", "Da", "Nu");
+                        bool confirmDelete = await DisplayAlert("Confirmare", "Sigur vrei să elimini acest eveniment din favorite?", "Da", "Nu");
                         if (confirmDelete)
                         {
                             selectedEvent.IsFavorite = false; // Mark as not favorite
                             await App.Database.SaveEventListAsync(selectedEvent); // Save the change to the database
                             await LoadFavoriteEventsAsync(); // Reload the list
-                            await DisplayAlert("Succes", "Locația a fost eliminată din favorite!", "OK");
+                            await DisplayAlert("Succes", "Evenimentul a fost eliminat din favorite!", "OK");
                         }
                         break;
                 }
